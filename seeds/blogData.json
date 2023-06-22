@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Pros of taking a six-month bootcamp",
+    "content": "It's less expensive and faster than a four-year degree, so it's ideal if you're looking to shift careers."
+  },
+  {
+    "title": "An idea for Project 2",
+    "content": "A database of activities for your kids to do, including the name, hours, location, notes, how long to spend there, and a link to the activity's website.  For example, one entry could be Sea Life, the closest thing Kansas City currently has to an aquarium. Hours are 10:00 to 5:00 during the week, 9:00 to 6:00 on weekends. Location is 2475 Grand Blvd., Kansas City, MO 64108. Notes might include, e.g., 'Good for about an hour of fun with my 5yo and 3yo.' And a link to its website. A user wonders, 'What should I do with my kids today?' and opens the app, and a list of activities pops up. Possible add-ons include: - link it to jsday to exclude things that are currently closed or will close soon - add an indoor/outdoor marker and set parameters so that the app checks the weather and alerts you if, for example, you're about to go to the zoo but it's raining or 10 degrees outside - something to sort by age - something that takes the address and makes it clickable so when you click on it driving directions pop up, or something that automatically displays current drive time to the activity - sync to the user's calendar so that it provides suggestions when the user points to a specific day/time and asks for something to do, filtered based on location/drive time/hours - user uploads photos to a photo DB that are associated with the activity, so when the user pulls up the activity there's an option to see photos from going there. Could also do videos."
+  },
+  {
+    "title": "How much will devs be paid in the future?",
+    "content": "Will there be an increase in the gap between low-skill and high-skill, where devs who can write new and interesting things earn even more, while those who can't become basically chatGPT operator/editors?"
+  }
+]
