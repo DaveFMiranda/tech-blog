@@ -83,8 +83,17 @@ document
   .querySelector('#blog-delete')
   .addEventListener('click', delButtonHandler);
 
-  const commentDeleteButton = document.querySelector('#comment-delete');
-  if (commentDeleteButton && typeof delButtonHandler2 === 'function') {
+
+
+  const commentDeleteButtons = document.querySelectorAll('.comment-list');
+if (commentDeleteButtons) {
+  commentDeleteButtons.forEach(commentDeleteButton => {
     commentDeleteButton.addEventListener('click', delButtonHandler2);
-  };
+
+  }
+    
+    )
+
+};
+
   
