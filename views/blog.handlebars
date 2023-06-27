@@ -1,21 +1,20 @@
 <div class="text-center">
   <h2>{{title}}</h2>
-  <p>{{content}}</p>
+  <p id="blog-content"> {{content}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
  <div class="col-md-6 blog-list">
     <div class="row mb-2">
       <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" id="blog-edit" data-id="{{id}}">EDIT THIS POST</button>
+          <input type="text" class="edit-input" id="blog-update" style="display: none;"/>
+          <button class="btn btn-sm btn-danger" id="edit-submit" style="display: none;">Submit Edit</button>
         <button class="btn btn-sm btn-danger" id="blog-delete" data-id="{{id}}">DELETE THIS POST</button>
       </div>
     </div>
  
 
 
-  {{!-- <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p> --}}
+ 
    <p>
 
      {{#if comments.length}}

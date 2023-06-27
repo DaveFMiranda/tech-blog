@@ -2,6 +2,11 @@ console.log('hello!');
 const submitId = document.querySelector('#comment-submit');
 const blogId = submitId.getAttribute('data-id');
 console.log(blogId);
+
+const blogEditId = document.querySelector('#blog-edit');
+const blogEdit = blogEditId.getAttribute('data-id');
+console.log(blogEdit);
+
 const blogDeleteId = document.querySelector('#blog-delete');
 const blogDelete = blogDeleteId.getAttribute('data-id');
 console.log(blogDelete);
@@ -35,9 +40,58 @@ console.log(content, blogId);
   }
 };
 
+const editButtonHandler = async (event) => {
+  event.preventDefault();
+  // TO DO: make sure the route below is correct
+  
+  
+  const oldContent = document.querySelector('#blog-content');
+  const newContent = document.querySelector('#blog-update');
+oldContent.style.display = 'none';
+newContent.style.display = 'block';
+newContent.focus();
+  console.log(newContent);
+
+  const submitEditButton = document.querySelector('#edit-submit');
+  submitEditButton.style.display = 'block';
+  submitEditButton.addEventListener('click', editContentSubmission);
+};
+
+const editContentSubmission = async (event) => {
+  event.preventDefault();
+  const newContent = document.querySelector('#blog-update').value.trim();
+  console.log(newContent);
+
+if (newContent) {
+
+let content = newContent;
+console.log(content);
+  const response = await fetch(`/api/blogs/${blogEdit}`, {
+    method: 'POST',
+    body: JSON.stringify({ content }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+  });
+
+  console.log(blogEdit);
+
+  if (response.ok) {
+    // Change this to redirect to /profile
+    document.location.replace(`/blogs/${blogEdit}`);
+  } else {
+    alert('Failed to edit blog entry');
+  }
+};
+};
+
+
+
+
+
 const delButtonHandler = async (event) => {
     // TO DO: make sure the route below is correct
-    const response = await fetch(`/api/bites/${blogDelete}`, {
+    const response = await fetch(`/api/blogs/${blogDelete}`, {
       method: 'DELETE',
     });
 
@@ -78,6 +132,10 @@ console.log(commentId);
 document
   .querySelector('.new-comment-form')
   .addEventListener('submit', newFormHandler);
+
+  document
+  .querySelector('#blog-edit')
+  .addEventListener('click', editButtonHandler);
 
 document
   .querySelector('#blog-delete')
