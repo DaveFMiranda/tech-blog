@@ -1,53 +1,77 @@
-<div class="text-center">
+<div class='text-left'>
   <h2>{{title}}</h2>
-  <p id="blog-content"> {{content}}</p>
+  <p id='blog-content'> {{content}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
- <div class="col-md-6 blog-list">
-    <div class="row mb-2">
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" id="blog-edit" data-id="{{id}}">EDIT THIS POST</button>
-          <input type="text" class="edit-input" id="blog-update" style="display: none;"/>
-          <button class="btn btn-sm btn-danger" id="edit-submit" style="display: none;">Submit Edit</button>
-        <button class="btn btn-sm btn-danger" id="blog-delete" data-id="{{id}}">DELETE THIS POST</button>
+  <div class='col-md-6 blog-list'>
+    <div class='row mb-2'>
+      <div class='col-md-4'>
+        <button
+          class='btn btn-sm btn-danger'
+          id='blog-edit'
+          data-id='{{id}}'
+        >EDIT THIS POST</button>
+        <input
+          type='text'
+          class='edit-input'
+          id='blog-update'
+          style='display: none;'
+        />
+        <button
+          class='btn btn-sm btn-danger'
+          id='edit-submit'
+          style='display: none;'
+        >Submit Edit</button>
+        <button
+          class='btn btn-sm btn-danger'
+          id='blog-delete'
+          data-id='{{id}}'
+        >DELETE THIS POST</button>
       </div>
     </div>
- 
-
-
- 
-   <p>
-
-     {{#if comments.length}}
-  <div class="col-md-6 comment-list">
-    <h3>Comments</h3>
-{{#each comments as |comment|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <p>{{comment.content}}</p>
-          <p>Created by {{user.name}} on {{format_date date_created}}</p>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" id="comment-delete" data-id="{{comment.id}}">DELETE THIS COMMENT</button>
-      </div>
+  </div>
+  {{! If there are comments associated with the blog post, loops through each and displays them. }}
+  {{#if comments.length}}
+    <div class='comment-list'>
+      <h3>Comments</h3>
+      {{#each comments as |comment|}}
+        <div class='row mb-2'>
+          <div class='col-md-8'>
+            <p>{{comment.content}}</p>
+            <p>Created by {{user.name}} on {{format_date date_created}}</p>
+          </div>
+          <div class='col-md-4'>
+            <button
+              class='btn btn-sm btn-danger'
+              id='comment-delete'
+              data-id='{{comment.id}}'
+            >DELETE THIS COMMENT</button>
+          </div>
+        </div>
+      {{/each}}
     </div>
-    {{/each}}
-{{/if}}
-</div>
+  {{/if}}
 
-<div class="row mt-4">
-  <div class="col-md-6">
+  <div class='row mt-4'>
     <h3>Add a comment:</h3>
-
-    <form class="form new-comment-form">
-      <div class="form-group">
-        <input class="form-input" type="text" id="comment-content" name="comment-content" />
+    <form class='form new-comment-form'>
+      <div class='form-group'>
+        <input
+          class='form-input'
+          type='text'
+          id='comment-content'
+          name='comment-content'
+        />
       </div>
-      
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" id="comment-submit" data-id="{{id}}">Submit</button>
+      <div class='form-group'>
+        <button
+          type='submit'
+          class='btn btn-primary'
+          id='comment-submit'
+          data-id='{{id}}'
+        >Submit</button>
       </div>
     </form>
-  </div>  </p>
+  </div>
 </div>
 
-<script src="/js/blog.js"></script>
+<script src='/js/blog.js'></script>

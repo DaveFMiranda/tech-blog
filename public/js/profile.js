@@ -1,3 +1,4 @@
+// Function to create a new blog post.
 const newFormHandler = async (event) => {
   event.preventDefault();
 
@@ -21,6 +22,7 @@ const newFormHandler = async (event) => {
   }
 };
 
+// Function to delete a blog post.
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -37,6 +39,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// Event handlers for new blog and delete blog buttons.
 document
   .querySelector('.new-blog-form')
   .addEventListener('submit', newFormHandler);
