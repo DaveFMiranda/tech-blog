@@ -1,26 +1,20 @@
-console.log('hello!');
+// Establishing variables to hold data to send to API routes. Some of these may or may not be necessary but I'm leaving them in in case they're needed, and they don't hurt anything.
 const submitId = document.querySelector('#comment-submit');
 const blogId = submitId.getAttribute('data-id');
-console.log(blogId);
 
 const blogEditId = document.querySelector('#blog-edit');
 const blogEdit = blogEditId.getAttribute('data-id');
-console.log(blogEdit);
 
 const blogDeleteId = document.querySelector('#blog-delete');
 const blogDelete = blogDeleteId.getAttribute('data-id');
-console.log(blogDelete);
+
 const commentId = document.querySelector('#comment-delete');
 
-
+// Function to submit a new comment
 const newFormHandler = async (event) => {
   event.preventDefault();
-  // TO DO: update querySelectors to match names in the views. Also remove "needed funding"
-  // const needed_funding = document.querySelector('#project-funding').value.trim();
   const content = document.querySelector('#comment-content').value.trim();
-  console.log(content);
 
-  // Make sure the fetch route is accurate and make sure the fields after body: below match the model you're trying to update
   if (content) {
     const response = await fetch(`/api/comments`, {
       method: 'POST',
@@ -29,111 +23,88 @@ const newFormHandler = async (event) => {
         'Content-Type': 'application/json',
       },
     });
-console.log(content, blogId);
-    // Update alert below
     if (response.ok) {
       document.location.replace(`/blogs/${blogId}`);
-      console.log(blogId);
     } else {
       alert('Failed to create comment');
     }
   }
 };
 
+// Function to edit a blog post
 const editButtonHandler = async (event) => {
   event.preventDefault();
-  // TO DO: make sure the route below is correct
-  
-  
+
+  // Sets up variables to switch from viewing the old content to viewing a new input field.
   const oldContent = document.querySelector('#blog-content');
   const newContent = document.querySelector('#blog-update');
-oldContent.style.display = 'none';
-newContent.style.display = 'block';
-newContent.focus();
-  console.log(newContent);
+  oldContent.style.display = 'none';
+  newContent.style.display = 'block';
+  newContent.focus();
 
+  // Makes the submit edit button visible and calls its function on click.
   const submitEditButton = document.querySelector('#edit-submit');
   submitEditButton.style.display = 'block';
   submitEditButton.addEventListener('click', editContentSubmission);
 };
 
+// Function to submit edits to a blog post.
 const editContentSubmission = async (event) => {
   event.preventDefault();
   const newContent = document.querySelector('#blog-update').value.trim();
-  console.log(newContent);
 
-if (newContent) {
-
-let content = newContent;
-console.log(content);
-  const response = await fetch(`/api/blogs/${blogEdit}`, {
-    method: 'POST',
-    body: JSON.stringify({ content }),
+  if (newContent) {
+    let content = newContent;
+    const response = await fetch(`/api/blogs/${blogEdit}`, {
+      method: 'POST',
+      body: JSON.stringify({ content }),
       headers: {
         'Content-Type': 'application/json',
       },
-  });
+    });
 
-  console.log(blogEdit);
+    if (response.ok) {
+      document.location.replace(`/blogs/${blogEdit}`);
+    } else {
+      alert('Failed to edit blog entry');
+    }
+  }
+};
+
+// Function to delete a blog post.
+const delButtonHandler = async (event) => {
+  const response = await fetch(`/api/blogs/${blogDelete}`, {
+    method: 'DELETE',
+  });
 
   if (response.ok) {
     // Change this to redirect to /profile
-    document.location.replace(`/blogs/${blogEdit}`);
+    document.location.replace(`/profile`);
   } else {
-    alert('Failed to edit blog entry');
+    alert('Failed to delete blog entry');
   }
 };
-};
 
-
-
-
-
-const delButtonHandler = async (event) => {
-    // TO DO: make sure the route below is correct
-    const response = await fetch(`/api/blogs/${blogDelete}`, {
-      method: 'DELETE',
-    });
-
-console.log(blogDelete);
-
-
-
-    if (response.ok) {
-      // Change this to redirect to /profile
-      document.location.replace(`/profile`);
-    } else {
-      alert('Failed to delete blog entry');
-    }
-  
-};
-
+// Function to delete a comment.
 const delButtonHandler2 = async (event) => {
-    const commentId = event.target.getAttribute('data-id');
-console.log(commentId);
-    // TO DO: make sure the route below is correct
-    const response = await fetch(`/api/comments/${commentId}`, {
-      method: 'DELETE',
-    });
+  const commentId = event.target.getAttribute('data-id');
+  const response = await fetch(`/api/comments/${commentId}`, {
+    method: 'DELETE',
+  });
 
-
-
-
-    // TO DO: update alert
-    if (response.ok) {
-      document.location.replace(`/blogs/${blogDelete}`);
-    } else {
-      alert('Failed to delete comment');
-    }
-  
+  if (response.ok) {
+    document.location.replace(`/blogs/${blogDelete}`);
+  } else {
+    alert('Failed to delete comment');
+  }
 };
 
-// TO DO: make sure querySelectors match handlebars docs
+// Event listeners to point to buttons and trigger their associated functions.
 document
   .querySelector('.new-comment-form')
   .addEventListener('submit', newFormHandler);
 
-  document
+document
   .querySelector('#blog-edit')
   .addEventListener('click', editButtonHandler);
 
@@ -141,17 +112,10 @@ document
   .querySelector('#blog-delete')
   .addEventListener('click', delButtonHandler);
 
-
-
-  const commentDeleteButtons = document.querySelectorAll('.comment-list');
+// Loops through all comments if there are any and adds event listeners to each comment's delete button.
+const commentDeleteButtons = document.querySelectorAll('.comment-list');
 if (commentDeleteButtons) {
-  commentDeleteButtons.forEach(commentDeleteButton => {
+  commentDeleteButtons.forEach((commentDeleteButton) => {
     commentDeleteButton.addEventListener('click', delButtonHandler2);
-
-  }
-    
-    )
-
-};
-
-  
+  });
+}

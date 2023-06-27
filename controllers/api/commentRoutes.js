@@ -1,9 +1,8 @@
-
-
 const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// Incoming POST requests lead to creation of a new comment
 router.post('/', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
@@ -18,6 +17,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// Incoming DELETE requests lead to deletion of a comment
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.destroy({
