@@ -8,11 +8,11 @@ This is a website for a tech blog. It requires a login and can accept new signup
 
 This program connects several tables from a product database to the server and allows the user to perform CRUD operations on each table.
 
+Here's a link to the deployed site: https://tech-blogdfm.herokuapp.com/
+
 Here's a screenshot of the homepage: ![Screenshot](/assets/screenshot1.png)
 
 Here's a screenshot of a blog post page: ![Screenshot](/assets/screenshot2.png)
-
-Here's a link to the deployed site: 
 
 ## Table of Contents
 
